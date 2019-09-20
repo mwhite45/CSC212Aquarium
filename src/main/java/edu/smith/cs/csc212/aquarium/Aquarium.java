@@ -1,7 +1,9 @@
 package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
+
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import me.jjfoley.gfx.GFX;
 
@@ -26,7 +28,23 @@ public class Aquarium extends GFX {
 	 * This is a static variable that tells us how tall the aquarium is.
 	 */
 	public static int HEIGHT = 500;
-
+	
+	
+	//Here we are creating a new Bubble object
+	Bubble crush;
+	//Here we are initializing an array
+	Bubble[] bubbles = new Bubble[10];
+	
+	//Here we are creating our Treasure chest object
+	TreasureChest chest = new TreasureChest();
+	
+	//Here we are creating our Seaweed
+	Seaweed food = new Seaweed();
+	
+	
+	Fish nemo;
+	Fish dory;
+	
 	/**
 	 * Put a snail on the top of the tank.
 	 */
@@ -39,16 +57,27 @@ public class Aquarium extends GFX {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
+		
+		crush = new Bubble(chest.x, chest.y, chest.width, chest.height);
+		
+		for (int i=0; i<bubbles.length; i++) {
+			bubbles[i] = new Bubble(chest.x, chest.y, chest.width, chest.height);
+		}
+		
+		nemo = new Fish(250, 250, true, true, false, 100, 100); //edit/figure out speed
+		dory = new Fish(100, 100, false, false, true, 100, 100); //edit/figure out speed
 	}
 
-	Fish nemo = new Fish(Color.red, 250, 250, true);
-	Fish dory = new Fish(Color.cyan, 100, 100, false);
+	
 
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		
+		//Draw our bubble
+		crush.draw(g);
 
 		//Draw nemo and dory
 		nemo.draw(g);
@@ -56,12 +85,26 @@ public class Aquarium extends GFX {
 
 		// Draw our snail!
 		algorithm.draw(g);
+		
+		//Draw our treasure chest
+		chest.draw(g);
+		
+		//Draw our seaweed
+		food.draw(g);
 
-		// Move the fish!
+		//for b in bubbles:
+		for (Bubble b : this.bubbles) {
+			b.draw(g);
+		}
 		
 	}
+	
 
 	public static void main(String[] args) {
+		
+		//Create a random speed generator
+		//Random rand = new Random();
+		
 		// Uncomment this to make it go slower!
 		// GFX.FPS = 10;
 		// This is potentially helpful for debugging movement if there are too many print statements!
