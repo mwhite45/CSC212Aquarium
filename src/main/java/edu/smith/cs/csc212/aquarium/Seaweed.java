@@ -1,9 +1,7 @@
 package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Graphics2D;
-import java.awt.Font; //determine to take out
 import java.awt.Color;
-import java.util.Random; //determine to take out
 
 public class Seaweed {
 	int x;
@@ -18,6 +16,7 @@ public class Seaweed {
 		this.height = 100;
 	}
 	public void draw(Graphics2D win) {
+		//Draw our seaweed.
 		win.setColor(Color.black);
 		win.drawOval(this.x, this.y, this.width, this.height);
 		win.drawOval(this.x + 5, this.y, this.width, this.height);

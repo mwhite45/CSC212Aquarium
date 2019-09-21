@@ -1,22 +1,52 @@
 package edu.smith.cs.csc212.aquarium;
 
-import java.awt.Graphics2D;
-import java.awt.Font;
 import java.awt.Color;
-import java.util.Random;
 
-public class HungryFish {
+
+public class HungryFish extends Fish {
 	
-	int x;
-	int y;
-	int width;
-	int height;
+	int foodX;
+	int foodY;
+	int foodWidth;
+	int foodHeight;
+	boolean isVeryHungry;
+	int destX;
+	int destY;
 	
-	public HungryFish() {
-		this.x = 100;
-		this.y = 100;
-		this.width = 4;
-		this.height = 15;
+	float r = rand.nextFloat();
+	float g = rand.nextFloat();
+	float b = rand.nextFloat();
+	
+	public HungryFish(int startX, int startY, boolean isLittle, boolean facingLeft, boolean facingRight, int speedX, int speedY, int destX, int destY) {
+		super(startX, startY, isLittle, facingLeft, facingRight, speedX, speedY);
+
+		this.foodX = 450;
+		this.foodY = 400;
+		this.foodWidth = 20;
+		this.foodHeight = 100;
+		this.isVeryHungry = false;
+		this.destX = destX;
+		this.destY = destY;
+		
+		navigate();
 	}
 
+		
+		
+	//Partial code was referenced from @author jfoley. URL: https://www.youtube.com/watch?v=2zbhI_Vo1G8&feature=youtu.be
+	public void navigate(int destX) {
+		if ((Math.abs(this.destX - this.x) >= 5) && Math.abs(this.destY - this.y) >= 5) {
+			this.isVeryHungry = true;
+		}
+		
+		if (this.isVeryHungry == true) {
+			this.destX = this.foodX;
+			this.destY = this.foodY;
+			this.color = new Color (r, g, b);
+			
+		}
+	}
 }
+				
+		
+	

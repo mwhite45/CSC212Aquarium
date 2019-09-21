@@ -1,9 +1,7 @@
 package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
-
 import java.awt.Graphics2D;
-import java.util.Random;
 
 import me.jjfoley.gfx.GFX;
 
@@ -30,18 +28,18 @@ public class Aquarium extends GFX {
 	public static int HEIGHT = 500;
 	
 	
-	//Here we are creating a new Bubble object
+	//Create a placeholder for our new Bubble object.
 	Bubble crush;
-	//Here we are initializing an array
+	//Initialize a fixed array for our ten bubbles.
 	Bubble[] bubbles = new Bubble[10];
 	
-	//Here we are creating our Treasure chest object
+	//Initialize our Treasure chest object.
 	TreasureChest chest = new TreasureChest();
 	
-	//Here we are creating our Seaweed
+	//Initialize our Seaweed object.
 	Seaweed food = new Seaweed();
 	
-	
+	//Create a placeholder for our two fishes.
 	Fish nemo;
 	Fish dory;
 	
@@ -64,34 +62,36 @@ public class Aquarium extends GFX {
 			bubbles[i] = new Bubble(chest.x, chest.y, chest.width, chest.height);
 		}
 		
-		nemo = new Fish(250, 250, true, true, false, 100, 100); //edit/figure out speed
-		dory = new Fish(100, 100, false, false, true, 100, 100); //edit/figure out speed
+		//Initialize our fish nemo and dory as a instance of class Fish which take in a few parameters. Parameters in order are:
+		//int startX, int startY, boolean isLittle, boolean facingLeft, boolean facingRight, int speedX, int speedY 
+		nemo = new Fish(250, 250, true, true, false, 100, 100); 
+		dory = new Fish(100, 100, false, false, true, 100, 100); 
 	}
 
 	
-
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		//Draw our bubble
+		//Draw our bubble.
 		crush.draw(g);
 
-		//Draw nemo and dory
+		//Draw nemo and dory.
 		nemo.draw(g);
 		dory.draw(g);
 
 		// Draw our snail!
 		algorithm.draw(g);
 		
-		//Draw our treasure chest
+		//Draw our treasure chest.
 		chest.draw(g);
 		
-		//Draw our seaweed
+		//Draw our seaweed.
 		food.draw(g);
 
+		//Draw each bubble in list
 		//for b in bubbles:
 		for (Bubble b : this.bubbles) {
 			b.draw(g);
